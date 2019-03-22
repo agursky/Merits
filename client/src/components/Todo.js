@@ -1,8 +1,11 @@
 import React, {Component} from 'react';
 import axios from 'axios';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 import Input from './Input';
 import ListTodo from './ListTodo';
+import Hello from './Hello';
+import Goodbye from './Goodbye';
 
 class Todo extends Component {
     state = {
@@ -40,9 +43,22 @@ class Todo extends Component {
         let { todos } = this.state;
         return(
             <div>
+            <Router>
+            <div>
+            <ul>
+            <li>
+            <Link to='/hello'>Hello</Link>
+            </li>
+            <li>
+            <Link to='/goodbye'>Goodbye</Link>
+            </li>
+            </ul>
+            </div>
             <h1>My Todos</h1>
             <Input getTodos={this.getTodos}/>
-            <ListTodo todos={todos} deleteTodo={this.deleteTodo} />
+            <Route path='/hello' component={Hello} />
+            <Route path='/goodbye' component={Goodbye} />
+            </Router>
             </div>
         )
     }
