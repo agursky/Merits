@@ -2,7 +2,9 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const routes = require('./routes/api');
+const session = require('express-session');
 const path = require('path');
+const passport = require('passport');
 require('dotenv').config();
 
 const app = express();
@@ -24,6 +26,18 @@ app.use((req, res, next) => {
 });
 
 app.use(bodyParser.json());
+
+app.use(
+    session({
+        secret: 'this-is-a-secret',
+        resave: false,
+        saveUninitialized: false
+        //last two keys are about resaving sessions that haven't changed. Both of these keys are required
+    })
+)
+
+app.use(passport.initialize());
+app.use(passport.session()); //calls the deserializer
 
 app.use('/api', routes);
 

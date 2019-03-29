@@ -11,9 +11,13 @@
   "author": "Andrew Gursky",
   "license": "ISC",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^7.0.0",
     "express": "^4.16.4",
+    "express-session": "^1.15.6",
     "mongoose": "^5.4.19",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0",
     "yarn": "^1.13.0"
   },
   "devDependencies": {

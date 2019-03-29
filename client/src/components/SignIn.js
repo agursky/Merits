@@ -1,13 +1,12 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
-class SignUp extends React.Component {
+class SignIn extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             username: '',
             password: '',
-            confirmPassword: '',
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -21,7 +20,7 @@ class SignUp extends React.Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        axios.post('/api/user', {
+        axios.post('/api/user/login', {
             username: this.state.username,
             password: this.state.password
         })
@@ -43,10 +42,6 @@ class SignUp extends React.Component {
                     Password
                         <input type='password'name='password' value={this.state.password} onChange={this.handleChange}/>
                     </label>
-                    <label>
-                    Confirm Password
-                        <input type='password'name='confirmPassword' value={this.state.confirmPassword} onChange={this.handleChange}/>
-                    </label>
                     <button type='submit' onClick={this.handleSubmit}>Sumbit</button>
             
                 </form>
@@ -55,4 +50,4 @@ class SignUp extends React.Component {
     }
 }
 
-export default SignUp;
+export default SignIn;

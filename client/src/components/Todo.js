@@ -7,6 +7,7 @@ import ListTodo from './ListTodo';
 import Hello from './Hello';
 import Goodbye from './Goodbye';
 import SignUp from './SignUp';
+import SignIn from './SignIn';
 
 class Todo extends Component {
     state = {
@@ -16,13 +17,15 @@ class Todo extends Component {
     
     componentDidMount() {
         this.getTodos();
-        this.getUsers();
+//        this.getUsers();
     }
 
     getTodos = () => {
         axios.get('/api/todos')
         .then(res => {
             if(res.data) {
+                console.log('todos');
+                console.log(res.data);
                 this.setState({
                     todos: res.data
                 })
@@ -31,19 +34,20 @@ class Todo extends Component {
         .catch(err => console.log(err));
     }
     
-    getUsers = () => {
-        console.log('getting users');
-        axios.get('/api/user')
-        .then(res => {
-            if(res.data) {
-                this.setState({
-                    users: res.data
-                })
-                console.log(res.data);
-            }
-        })
-        .catch(err => console.log(err));
-    }
+//    getUsers = () => {
+//        console.log('getting users');
+//        axios.get('/api/user')
+//        .then(res => {
+//            if(res.data) {
+////                this.setState({
+////                    users: res.data
+////                })
+////                console.log(this.state.users);
+//                console.log(res.data);
+//            }
+//        })
+//        .catch(err => console.log(err));
+//    }
     
     deleteTodo = (id) => {
 
@@ -71,6 +75,9 @@ class Todo extends Component {
                             </li>
                             <li>
                                 <Link to='/signup'>Sign Up</Link>
+                            </li>                            
+                            <li>
+                                <Link to='/login'>Log In</Link>
                             </li>
                         </ul>
                     </div>
@@ -79,6 +86,7 @@ class Todo extends Component {
                 <Route path='/hello' component={Hello} />
                 <Route path='/goodbye' component={Goodbye} />
                 <Route path='/signup' component={SignUp} />
+                <Route path='/login' component={SignIn} />
                 </Router>
             <ListTodo todos={this.state.todos} deleteTodo={this.deleteTodo}/>
             </div>
