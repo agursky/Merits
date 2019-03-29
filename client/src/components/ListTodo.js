@@ -1,16 +1,19 @@
 import React from 'react';
 
-const ListTodo = ({ todos, deleteTodo }) => {
+//const ListTodo = ({ todos, deleteTodo }) => {
+function ListTodo(props) {
+    
+
 
   return (
     <ul>
       {
-        todos &&
-          todos.length > 0 ?
+        props.todos &&
+          props.todos.length > 0 ?
             (
-              todos.map(todo => {
+              props.todos.map(todo => {
                 return (
-                  <li key={todo._id} onClick={() => deleteTodo(todo._id)}>{todo.action}</li>
+                  <li key={todo._id} onClick={() => props.deleteTodo(todo._id)}>{todo.action}</li>
                 )
               })
             )
