@@ -1,6 +1,5 @@
 import React from 'react';
 
-//const ListTodo = ({ todos, deleteTodo }) => {
 function ListTodo(props) {
     
 

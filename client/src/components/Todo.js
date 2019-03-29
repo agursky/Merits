@@ -10,11 +10,13 @@ import SignUp from './SignUp';
 
 class Todo extends Component {
     state = {
-        todos: []
+        todos: [],
+        users: []
     }
     
     componentDidMount() {
         this.getTodos();
+        this.getUsers();
     }
 
     getTodos = () => {
@@ -24,6 +26,20 @@ class Todo extends Component {
                 this.setState({
                     todos: res.data
                 })
+            }
+        })
+        .catch(err => console.log(err));
+    }
+    
+    getUsers = () => {
+        console.log('getting users');
+        axios.get('/api/user')
+        .then(res => {
+            if(res.data) {
+                this.setState({
+                    users: res.data
+                })
+                console.log(res.data);
             }
         })
         .catch(err => console.log(err));

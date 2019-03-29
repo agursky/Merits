@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import axios from 'axios';
 
 class SignUp extends React.Component {
     constructor(props) {
@@ -20,7 +21,13 @@ class SignUp extends React.Component {
     
     handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target);
+        axios.post('/api/user', {
+            username: this.state.username,
+            password: this.state.password
+        })
+        .then(response => {
+            console.log(response);
+        })
     }
     
     render() {
